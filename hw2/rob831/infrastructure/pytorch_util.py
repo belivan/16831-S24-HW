@@ -49,7 +49,13 @@ def build_mlp(
         output_activation = _str_to_activation[output_activation]
     
     # TODO: get this from hw1
-    raise NotImplementedError
+    # raise NotImplementedError
+    layers = [nn.Linear(input_size, size), activation]  # layers is a list of layers, which is initialized with the first layer
+    for _ in range(n_layers - 1):
+        layers += [nn.Linear(size, size), activation]  # size: dimension of each hidden layer
+    layers += [nn.Linear(size, output_size), output_activation]  # output_size: size of the output layer
+
+    return nn.Sequential(*layers)
 
 
 device = None

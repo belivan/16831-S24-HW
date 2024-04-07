@@ -3,10 +3,11 @@ from typing import Union
 import torch
 from torch import nn
 
-Activation = Union[str, nn.Module]
+Activation = Union[str, nn.Module] # Union of string and nn.Module
+# Union is a type that can be one of several types. It is used to define a type that can be one of several types.
 
 
-_str_to_activation = {
+_str_to_activation = {  # this is a dictionary that maps strings to activation functions
     'relu': nn.ReLU(),
     'tanh': nn.Tanh(),
     'leaky_relu': nn.LeakyReLU(),
@@ -40,14 +41,22 @@ def build_mlp(
         returns:
             MLP (nn.Module)
     """
-    if isinstance(activation, str):
+    if isinstance(activation, str):  # if the activation is a string, then we convert it to the corresponding activation function
         activation = _str_to_activation[activation]
-    if isinstance(output_activation, str):
+    if isinstance(output_activation, str):  # if the output_activation is a string, then we convert it to the corresponding activation function
         output_activation = _str_to_activation[output_activation]
 
     # TODO: return a MLP. This should be an instance of nn.Module  [OK]
     # Note: nn.Sequential is an instance of nn.Module.
-    raise NotImplementedError
+    # raise NotImplementedError
+    
+    layers = [nn.Linear(input_size, size), activation]  # layers is a list of layers, which is initialized with the first layer
+    for _ in range(n_layers - 1):
+        layers += [nn.Linear(size, size), activation]  # size: dimension of each hidden layer
+    layers += [nn.Linear(size, output_size), output_activation]  # output_size: size of the output layer
+
+    return nn.Sequential(*layers)
+    # nn.Sequential is a container for layers, which is used to create a sequence of layers. * is used to unpack the list of layers
 
 
 device = None

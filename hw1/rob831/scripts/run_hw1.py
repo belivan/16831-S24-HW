@@ -5,7 +5,7 @@ from rob831.infrastructure.rl_trainer import RL_Trainer
 from rob831.agents.bc_agent import BCAgent
 from rob831.policies.loaded_gaussian_policy import LoadedGaussianPolicy
 
-class BC_Trainer(object):
+class BC_Trainer(object): #bc = behavior cloning
 
     def __init__(self, params):
 
@@ -13,7 +13,7 @@ class BC_Trainer(object):
         ## AGENT PARAMS
         #######################
 
-        agent_params = {
+        agent_params = { #nn architecture
             'n_layers': params['n_layers'],
             'size': params['size'],
             'learning_rate': params['learning_rate'],
@@ -21,7 +21,7 @@ class BC_Trainer(object):
             }
 
         self.params = params
-        self.params['agent_class'] = BCAgent ## HW1: you will modify this
+        self.params['agent_class'] = BCAgent  ## HW1: you will modify this
         self.params['agent_params'] = agent_params
 
         ################
@@ -34,8 +34,8 @@ class BC_Trainer(object):
         ## LOAD EXPERT POLICY
         #######################
 
-        print('Loading expert policy from...', self.params['expert_policy_file'])
-        self.loaded_expert_policy = LoadedGaussianPolicy(self.params['expert_policy_file'])
+        print('Loading expert policy from...', self.params['expert_policy_file']) #listing params
+        self.loaded_expert_policy = LoadedGaussianPolicy(self.params['expert_policy_file']) #loading expert policy
         print('Done restoring expert policy...')
 
     def run_training_loop(self):
@@ -64,13 +64,13 @@ def main():
 
     parser.add_argument('--batch_size', type=int, default=1000)  # training data collected (in the env) during each iteration
     parser.add_argument('--eval_batch_size', type=int,
-                        default=1000)  # eval data collected (in the env) for logging metrics
+                        default=5000)  # eval data collected (in the env) for logging metrics
     parser.add_argument('--train_batch_size', type=int,
                         default=100)  # number of sampled data points to be used per gradient/train step
 
     parser.add_argument('--n_layers', type=int, default=2)  # depth, of policy to be learned
     parser.add_argument('--size', type=int, default=64)  # width of each layer, of policy to be learned
-    parser.add_argument('--learning_rate', '-lr', type=float, default=5e-3)  # LR for supervised learning
+    parser.add_argument('--learning_rate', '-lr', type=float, default=1e-2)  # LR for supervised learning
 
     parser.add_argument('--video_log_freq', type=int, default=5)
     parser.add_argument('--scalar_log_freq', type=int, default=1)

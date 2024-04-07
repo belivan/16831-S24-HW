@@ -31,7 +31,6 @@ A. (Recommended) Install with conda:
 	cd <path_to_hw1>
 	$ pip install -e .
 	```
-
 This conda environment requires activating it every time you open a new terminal (in order to run code), but the benefit is that the required dependencies for this codebase will not affect existing/other versions of things on your computer. This stand-alone environment will have everything that is necessary.
 
 

@@ -3,7 +3,7 @@ from rob831.policies.MLP_policy import MLPPolicySL
 from .base_agent import BaseAgent
 
 
-class BCAgent(BaseAgent):
+class BCAgent(BaseAgent):  # bc = behavior cloning
     def __init__(self, env, agent_params):
         super(BCAgent, self).__init__()
 

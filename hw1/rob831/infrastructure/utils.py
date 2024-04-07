@@ -4,10 +4,11 @@ import time
 ############################################
 ############################################
 
+
 def sample_trajectory(env, policy, max_path_length, render=False, render_mode=('rgb_array')):
 
     # initialize env for the beginning of a new rollout
-    ob = TODO  # HINT: should be the output of resetting the env [OK]
+    ob = env.reset()  # HINT: should be the output of resetting the env [OK]
 
     # init vars
     obs, acs, rewards, next_obs, terminals, image_obs = [], [], [], [], [], []
@@ -16,19 +17,28 @@ def sample_trajectory(env, policy, max_path_length, render=False, render_mode=('
 
         # render image of the simulated env
         if render:
-            if 'rgb_array' in render_mode:
-                if hasattr(env, 'sim'):
+            if 'rgb_array' in render_mode:  # rgb_array is the mode used in the monitor wrapper, which is used to record videos
+                if hasattr(env, 'sim'):  # hasattr is used to check if the object has the attribute 'sim'
                     image_obs.append(env.sim.render(camera_name='track', height=500, width=500)[::-1])
+                    # env.sim.render is used to render the environment
+                    # camera_name is the name of the camera used to render the environment
+                    # height and width are the height and width of the image
+                    # [::-1] is used to reverse the order of the elements in the array, which is used to reverse the image, because the image is stored in the array in the reverse order???
                 else:
+                    # if the environment does not have the attribute 'sim', then we use the render function of the environment
                     image_obs.append(env.render(mode=render_mode))
             if 'human' in render_mode:
+                # if the mode is human, then we use the render function of the environment
+                # human mode is used to render the environment in a window
                 env.render(mode=render_mode)
-                time.sleep(env.model.opt.timestep)
+                time.sleep(env.model.opt.timestep)  # we sleep for the time step of the environment model
 
         # use the most recent ob to decide what to do
         obs.append(ob)
-        ac = TODO # HINT: query the policy's get_action function [OK]
-        ac = ac[0]
+        ac = policy.get_action(ob)  # HINT: query the policy's get_action function [OK]
+        ac = ac[0]  # the action is the first element of the array, because the get_action function returns a tuple, where the first element is the action
+        # the action is the first element of the tuple, because the get_action function returns a tuple, where the first element is the action
+        # the second element of the tuple is the dictionary, which contains the information about the action???
         acs.append(ac)
 
         # take that action and record results
@@ -41,8 +51,8 @@ def sample_trajectory(env, policy, max_path_length, render=False, render_mode=('
 
         # TODO end the rollout if the rollout ended
         # HINT: rollout can end due to done, or due to max_path_length
-        rollout_done = TODO  # HINT: this is either 0 or 1
-        terminals.append(rollout_done)
+        rollout_done = int(done or steps >= max_path_length)  # HINT: this is either 0 or 1
+        terminals.append(rollout_done)  # we append the value of rollout_done to the terminals array
 
         if rollout_done:
             break
@@ -60,9 +70,9 @@ def sample_trajectories(env, policy, min_timesteps_per_batch, max_path_length, r
     timesteps_this_batch = 0
     paths = []
     while timesteps_this_batch < min_timesteps_per_batch:
-
-        TODO
-
+        paths.append(sample_trajectory(env, policy, max_path_length, render, render_mode))  # here we append the path to the paths array
+        timesteps_this_batch += get_pathlength(paths[-1])  # here we add the length of the path to the timesteps_this_batch, using the get_pathlength function
+        # using [-1] we get the last element of the array, which is the path that we just appended to the array
     return paths, timesteps_this_batch
 
 def sample_n_trajectories(env, policy, ntraj, max_path_length, render=False, render_mode=('rgb_array')):
@@ -74,7 +84,8 @@ def sample_n_trajectories(env, policy, ntraj, max_path_length, render=False, ren
     """
     sampled_paths = []
 
-    TODO
+    for _ in range(ntraj):
+        sampled_paths.append(sample_trajectory(env, policy, max_path_length, render, render_mode))
 
     return sampled_paths
 
@@ -117,4 +128,3 @@ def convert_listofrollouts(paths, concat_rew=True):
 
 def get_pathlength(path):
     return len(path["reward"])
-

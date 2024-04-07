@@ -194,7 +194,7 @@ class RL_Trainer(object):
     def collect_training_trajectories(self, itr, initial_expertdata, collect_policy, num_transitions_to_sample, save_expert_data_to_disk=False):
         """
         :param itr:
-        :param load_initial_expertdata:  path to expert data pkl file
+        :param load_initial_expertdata:  path to expert data pkl file // its called initial_expertdata in the main function
         :param collect_policy:  the current policy using which we collect data
         :param num_transitions_to_sample:  the number of transitions we collect
         :return:
@@ -204,7 +204,12 @@ class RL_Trainer(object):
         """
         # TODO: get this from hw1 or hw2
         if itr == 0:
-            num_transitions_to_sample = self.params['batch_size_initial']
+            if initial_expertdata:
+                paths = pickle.load(open(initial_expertdata, 'rb'))
+                return paths, 0, None
+            else:
+                num_transitions_to_sample = self.params['batch_size_initial']
+            # num_transitions_to_sample = self.params['batch_size_initial']
         else:
             num_transitions_to_sample = self.params['batch_size']
 
