@@ -132,7 +132,7 @@ class FFModel(nn.Module, BaseModel):
                                   data_statistics["delta_std"])[0]  # TODO(Q1) get the predicted next-states (s_t+1) as a numpy array
         # Hint: `self(...)` returns a tuple, but you only need to use one of the
         # outputs.
-        return prediction.detach().numpy()
+        return prediction.detach().cpu().numpy()
 
     def update(self, observations, actions, next_observations, data_statistics):
         """

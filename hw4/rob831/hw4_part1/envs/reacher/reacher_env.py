@@ -44,7 +44,7 @@ class Reacher7DOFEnv(mujoco_env.MujocoEnv, utils.EzPickle):
             self.model.site_pos[self.target_sid], #[3]
         ])
 
-    def step(self, a):
+    def take_step(self, a):
 
         self.do_simulation(a, self.frame_skip)
         ob = self._get_obs()
