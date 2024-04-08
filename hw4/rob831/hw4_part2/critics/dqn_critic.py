@@ -26,6 +26,8 @@ class DQNCritic(BaseCritic):
         self.gamma = hparams['gamma']
 
         self.optimizer_spec = optimizer_spec
+        print("<" * 10)
+        print("Initializing network with ob_dim:", self.ob_dim)
         network_initializer = hparams['q_func']
         self.q_net = network_initializer(self.ob_dim, self.ac_dim)
         self.q_net_target = network_initializer(self.ob_dim, self.ac_dim)
@@ -62,6 +64,17 @@ class DQNCritic(BaseCritic):
         next_ob_no = ptu.from_numpy(next_ob_no)
         reward_n = ptu.from_numpy(reward_n)
         terminal_n = ptu.from_numpy(terminal_n)
+        ##################
+        # dummy_input = torch.randn(256, 2).to(ptu.device)  # Assuming ob_dim = 2
+        # print("Dummy input shape:", dummy_input.shape)
+        # dummy_output = self.q_net(dummy_input)
+        # print("Dummy output shape:", dummy_output.shape)
+        ##################
+        # print("ob_no", ob_no.shape)
+        # print("ob_no dtype before conversion:", ob_no.dtype)
+        # ob_no_copy = ob_no.clone().detach()
+        assert ob_no.dtype == torch.float32
+        assert ob_no.shape[1] == self.ob_dim
 
         qa_t_values = self.q_net(ob_no)
         q_t_values = torch.gather(qa_t_values, 1, ac_na.unsqueeze(1)).squeeze(1)

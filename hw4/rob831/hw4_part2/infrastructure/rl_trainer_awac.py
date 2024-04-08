@@ -16,7 +16,7 @@ from rob831.hw4_part2.infrastructure import utils
 from rob831.hw4_part2.infrastructure.logger import Logger
 
 from rob831.hw4_part2.agents.awac_agent import AWACAgent
-from rob831.hw4_part2.agents.iql_agent import IQLAgent
+# from rob831.hw4_part2.agents.iql_agent import IQLAgent
 from rob831.hw4_part2.infrastructure.dqn_utils import (
         get_wrapper_by_name,
         register_custom_envs,
