@@ -170,6 +170,7 @@ class MLPPolicyAWAC(MLPPolicy):  # AWAC = Adversarial Weighted Actor Critic
             adv_n = ptu.from_numpy(adv_n)
 
         # TODO update the policy network utilizing AWAC update
+        print("HERRRRRRRRRRRRRRRREEEEEEEEE")
         self.optimizer.zero_grad()
         logprob = self.forward(observations).log_prob(actions)
         actor_loss = -(logprob * adv_n).mean()

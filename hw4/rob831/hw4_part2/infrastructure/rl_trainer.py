@@ -110,9 +110,6 @@ class RL_Trainer(object):
         ac_dim = self.env.action_space.n if discrete else self.env.action_space.shape[0]
         self.params['agent_params']['ac_dim'] = ac_dim
         self.params['agent_params']['ob_dim'] = ob_dim
-        print(">"*10)
-        print("Observation dimensions:", ob_dim)
-        print(">"*10)
 
         # simulation timestep, will be used for video saving
         if 'model' in dir(self.env):
