@@ -69,112 +69,137 @@ backgroundcolor = \color{light-yellow}
 \end{centering}
 \vspace{0.25cm}
 
-\textbf{Andrew ID:} \texttt{Write your Andrew ID here.} \\
+\textbf{Andrew ID:} \texttt{ayanovic} \\
 \textbf{Collaborators:} \texttt{Write the Andrew IDs of your collaborators here (if any).}\\ 
 \textbf{NOTE:} Please do \textbf{NOT} change the sizes of the answer blocks or plots.
 
 \section{Problem 1: Dynamics Model Training -- \lbrack10 points total\rbrack}
 \begin{answer}[title=Theory questions,height=4.5cm,width=\linewidth]
+    The following plots show the predicted rewards and the true rewards for the first iteration of the model training. 
+    The first plot shows the predicted rewards for the model trained with 5 trajectories
+    and a neural network architecture of 2 layers with 250 units each. 
+    The second and third plots show the predicted rewards for the models trained with 
+    500 trajectories and neural network architectures of 1 layer with 32 units and 2 layers with 250 units,
+    respectively. Out of the three models, the model trained with 500 trajectories and a neural network architecture of 2 layers with 250 units
+    has the best performance, where the predicted rewards are closest to the true rewards measured by the MPE (Mean Prediction Error).
 \end{answer}
 
 
-\begin{answer}[title=Plot,height=9.5cm,width=\linewidth]
+\begin{answer}[title=Performance Plot Cheetah Env (1),height=9.5cm,width=\linewidth]
 % TODO
 \centering
-\includegraphics[height=8cm]{example-image-a}
+\includegraphics[height=8cm]{/home/belivan/IRL/16831-S24-HW/hw4/rob831/data/hw4_q1_cheetah_n5_arch2x250_cheetah-hw4_part1-v0_07-04-2024_00-37-26/itr_0_predictions.png}
 \end{answer}
 
-\begin{answer}[title=Plot,height=9.5cm,width=\linewidth]
+\begin{answer}[title=Performance Plot Cheetah Env (2),height=9.5cm,width=\linewidth]
 % TODO
 \centering
-\includegraphics[height=8cm]{example-image-a}
+\includegraphics[height=8cm]{/home/belivan/IRL/16831-S24-HW/hw4/rob831/data/hw4_q1_cheetah_n500_arch1x32_cheetah-hw4_part1-v0_07-04-2024_00-25-49/itr_0_predictions.png}
 \end{answer}
 
-\begin{answer}[title=Plot,height=9.5cm,width=\linewidth]
+\begin{answer}[title=Performance Plot Cheetah Env (3),height=9.5cm,width=\linewidth]
 % TODO
 \centering
-\includegraphics[height=8cm]{example-image-a}
+\includegraphics[height=8cm]{/home/belivan/IRL/16831-S24-HW/hw4/rob831/data/hw4_q1_cheetah_n500_arch2x250_cheetah-hw4_part1-v0_07-04-2024_00-34-54/itr_0_predictions.png}
 \end{answer}
 
 \section{Problem 2: Action Selection}
-\begin{answer}[title=Plot,height=9.5cm,width=\linewidth]
+\begin{answer}[title=Reward Return Plot Obstacles Env,height=9.5cm,width=\linewidth]
 % TODO
 \centering
-\includegraphics[height=8cm]{example-image-a}
+\includegraphics[height=8cm, width=15cm]{/home/belivan/IRL/16831-S24-HW/hw4/rob831/data/hw4_q2_obstacles_singleiteration_obstacles-hw4_part1_07-04-2024_18-11-43/q2.png}
 \end{answer}
 
 
 
 \section{Problem 3: Iterative Model Training}
-\begin{answer}[title=Plot,height=9.5cm,width=\linewidth]
+\begin{answer}[title=Performance Plot Cheetah Env,height=9.5cm,width=\linewidth]
 % TODO
 \centering
-\includegraphics[height=8cm]{example-image-a}
+\includegraphics[height=8cm]{/home/belivan/IRL/16831-S24-HW/hw4/rob831/data/hw4_q3_cheetah_cheetah-hw4_part1-v0_07-04-2024_21-52-32/itr_0_predictions.png}
 \end{answer}
 
-\begin{answer}[title=Plot,height=9.5cm,width=\linewidth]
+\begin{answer}[title=Performance Plot Obstacles Env,height=9.5cm,width=\linewidth]
 % TODO
 \centering
-\includegraphics[height=8cm]{example-image-a}
+\includegraphics[height=8cm]{/home/belivan/IRL/16831-S24-HW/hw4/rob831/data/hw4_q3_obstacles_obstacles-hw4_part1-v0_07-04-2024_15-23-00/itr_0_predictions.png}
 \end{answer}
 
-\begin{answer}[title=Plot,height=9.5cm,width=\linewidth]
+\begin{answer}[title=Performance Plot Reacher Env,height=9.5cm,width=\linewidth]
 % TODO
 \centering
-\includegraphics[height=8cm]{example-image-a}
+\includegraphics[height=8cm]{/home/belivan/IRL/16831-S24-HW/hw4/rob831/data/hw4_q3_reacher_reacher-hw4_part1_07-04-2024_21-53-23/itr_0_predictions.png}
 \end{answer}
 
 \section{Problem 4: Hyper-parameter Comparison}
 \begin{answer}[title=Plot,height=9.5cm,width=\linewidth]
 % TODO
 \centering
-\includegraphics[height=8cm]{example-image-a}
+\includegraphics[height=8cm]{/home/belivan/IRL/16831-S24-HW/q4_ensemble.png}
 \end{answer}
+
+\textbf{Comments:} Model performance tend to be more stable with a larger ensemble size. 
 
 \begin{answer}[title=Plot,height=9.5cm,width=\linewidth]
 % TODO
 \centering
-\includegraphics[height=8cm]{example-image-a}
+\includegraphics[height=8cm]{/home/belivan/IRL/16831-S24-HW/q4_horizon.png}
 \end{answer}
+
+\textbf{Comments:} Model performance tend to be more stable with a larger horizon.
+However, large horizon does not always lead to better performance.
+As shown in the plot, the model trained with a horizon of 5 has generally better performance.
 
 \begin{answer}[title=Plot,height=9.5cm,width=\linewidth]
 % TODO
 \centering
-\includegraphics[height=8cm]{example-image-a}
+\includegraphics[height=8cm]{/home/belivan/IRL/16831-S24-HW/q4_numseq.png}
 \end{answer}
+
+\textbf{Comments:} Model performance tend to be more stable and yield higher 
+average returns with a larger number of candidate action sequences.
 
 
 \section{Problem 5: Hyper-parameter Comparison (Bonus)}
 \begin{answer}[title=Plot,height=9.5cm,width=\linewidth]
 % TODO
 \centering
-\includegraphics[height=8cm]{example-image-a}
+\includegraphics[height=8cm]{/home/belivan/IRL/16831-S24-HW/q5.png}
 \end{answer}
+
+\textbf{Comments:} The models that utilize CEM consistently outperform the models that utilize random action selection.
+CEM tends to yield higher average returns with more CEM iterations.
 
 
 \section{Problem 6: Exploration (Bonus)}
-\begin{answer}[title=Plot,height=9.5cm,width=\linewidth]
+\begin{answer}[title=Density Plot Pointmass Easy Random,height=9.5cm,width=\linewidth]
 % TODO
 \centering
-\includegraphics[height=8cm]{example-image-a}
+\includegraphics[height=8cm]{/home/belivan/IRL/16831-S24-HW/hw4/rob831/data/hw4_part2_expl_q6_env1_random_PointmassEasy-v0_08-04-2024_15-02-30/curr_state_density.png}
 \end{answer}
 
-\begin{answer}[title=Plot,height=9.5cm,width=\linewidth]
+\begin{answer}[title=Density Plot Pointmass Easy RND,height=9.5cm,width=\linewidth]
 % TODO
 \centering
-\includegraphics[height=8cm]{example-image-a}
+\includegraphics[height=8cm]{/home/belivan/IRL/16831-S24-HW/hw4/rob831/data/hw4_part2_expl_q6_env1_rnd_PointmassEasy-v0_08-04-2024_14-55-25/curr_state_density.png}
 \end{answer}
 
-\begin{answer}[title=Plot,height=9.5cm,width=\linewidth]
+\begin{answer}[title=Density Plot Pointmass Hard Random,height=9.5cm,width=\linewidth]
 % TODO
 \centering
-\includegraphics[height=8cm]{example-image-a}
+\includegraphics[height=8cm]{/home/belivan/IRL/16831-S24-HW/hw4/rob831/data/hw4_part2_expl_q6_env2_random_PointmassHard-v0_08-04-2024_15-40-37/curr_state_density.png}
 \end{answer}
 
-\begin{answer}[title=Plot,height=9.5cm,width=\linewidth]
+\begin{answer}[title=Density Plot Pointmass Hard RND,height=9.5cm,width=\linewidth]
 % TODO
 \centering
-\includegraphics[height=8cm]{example-image-a}
+\includegraphics[height=8cm]{/home/belivan/IRL/16831-S24-HW/hw4/rob831/data/hw4_part2_expl_q6_env2_rnd_PointmassHard-v0_08-04-2024_15-56-17/curr_state_density.png}
+\end{answer}
+
+\begin{answer}[title=Reward Return Plot for Pointmass Env (Easy and Hard),height=9.5cm,width=\linewidth]
+% TODO
+\centering
+\includegraphics[height=8cm]{/home/belivan/IRL/16831-S24-HW/hw4/rob831/data/q6.png}
 \end{answer}
 
 
