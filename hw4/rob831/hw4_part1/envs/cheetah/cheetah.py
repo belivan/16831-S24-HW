@@ -9,8 +9,8 @@ class HalfCheetahEnv(mujoco_env.MujocoEnv, utils.EzPickle):
             "human",
             "rgb_array",
             "depth_array",
-            # "single_rgb_array",
-            # "single_depth_array",
+            "single_rgb_array",
+            "single_depth_array"
         ],
         "render_fps": 100,
     }

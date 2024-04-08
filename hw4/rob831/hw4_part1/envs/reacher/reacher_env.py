@@ -108,7 +108,7 @@ class Reacher7DOFEnv(mujoco_env.MujocoEnv, utils.EzPickle):
 
         self.model.site_pos[self.target_sid] = [0.1, 0.1, 0.1]
 
-        observation, _reward, done, _info = self.step(np.zeros(7))
+        observation, _reward, done, _info = self.take_step(np.zeros(7))
         ob = self._get_obs()
 
         return ob
